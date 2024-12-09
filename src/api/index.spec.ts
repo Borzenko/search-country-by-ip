@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { fetchIpAddressInformation } from "./index";
 
-// Mock fetch globally
 global.fetch = vi.fn();
 
 describe("fetchIpAddressInformation", () => {

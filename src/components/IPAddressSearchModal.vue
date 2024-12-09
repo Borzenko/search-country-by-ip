@@ -4,7 +4,14 @@
     <div class="modal-body">
       <div class="ip-address-search-title">
         <span>Enter one or more IP addresses to get their country</span>
-        <button @click="inputs.push('')">
+        <button
+          @click="
+            inputs.push({
+              value: '',
+              id: generateRandomNumber(),
+            })
+          "
+        >
           <svg
             enable-background="new 0 0 50 50"
             height="50px"
@@ -41,10 +48,10 @@
           Add
         </button>
       </div>
-      <div v-for="(value, index) in inputs" :key="index">
+      <div v-for="(input, index) in inputs" :key="input.id">
         <IPAddressSearchInput
-          @remove="removeInput(index)"
-          v-model="inputs[index]"
+          @remove="removeInput(input.id)"
+          v-model="input.value"
           :index="index"
         />
       </div>
@@ -56,10 +63,24 @@
 import { ref } from "vue";
 import IPAddressSearchInput from "./IPAddressSearchInput.vue";
 
-const inputs = ref<Array<string>>([""]);
+const inputs = ref<
+  Array<{
+    value: string;
+    id: number;
+  }>
+>([
+  {
+    value: "",
+    id: 1,
+  },
+]);
 
 function removeInput(index: number) {
-  inputs.value = inputs.value.filter((item, i) => i !== index);
+  inputs.value = inputs.value.filter((item) => item.id !== index);
+}
+
+function generateRandomNumber() {
+  return Math.floor(Math.random() * 10000000) + 1;
 }
 
 defineExpose({
