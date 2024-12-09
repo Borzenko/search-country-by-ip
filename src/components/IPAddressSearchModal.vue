@@ -61,6 +61,10 @@ const inputs = ref<Array<string>>([""]);
 function removeInput(index: number) {
   inputs.value = inputs.value.filter((item, i) => i !== index);
 }
+
+defineExpose({
+  inputs,
+});
 </script>
 
 <style lang="scss" scoped>

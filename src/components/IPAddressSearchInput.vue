@@ -120,6 +120,12 @@ function getTimeZoneTime() {
 onBeforeUnmount(() => {
   clearTimer();
 });
+
+defineExpose({
+  isValid,
+  isFetching,
+  emit,
+});
 </script>
 
 <style lang="scss">
