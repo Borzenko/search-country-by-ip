@@ -41,6 +41,9 @@ describe("IPAddressSearchModal", () => {
     inputs = wrapper.findAllComponents(IPAddressSearchInput);
     expect(inputs).toHaveLength(2);
 
-    expect(wrapper.vm.inputs).toEqual(["", ""]);
+    expect(wrapper.vm.inputs[0].value).toEqual("");
+    expect(wrapper.vm.inputs[0].id).not.toBeNaN();
+    expect(wrapper.vm.inputs[1].value).toEqual("");
+    expect(wrapper.vm.inputs[1].id).not.toBeNaN();
   });
 });
